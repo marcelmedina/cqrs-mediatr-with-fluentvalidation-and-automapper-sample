@@ -13,8 +13,7 @@ namespace CQRSMediatrWithFVAndAutoMapperSampleApplication.Product.Pipeline
             _validators = validators;
         }
 
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
-            RequestHandlerDelegate<TResponse> next)
+        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
             if (_validators.Any())
             {
@@ -30,7 +29,7 @@ namespace CQRSMediatrWithFVAndAutoMapperSampleApplication.Product.Pipeline
                 }
             }
 
-            return await next(); ;
+            return await next();
         }
     }
 }
